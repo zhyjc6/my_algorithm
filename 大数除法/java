@@ -1,0 +1,24 @@
+import java.math.BigInteger;//导入大数类
+import java.util.Scanner;//输入类
+
+public class Main
+        {
+            public static  void main(String[] args)
+            {
+
+                Scanner sc=new Scanner(System.in);
+                int T=sc.nextInt();
+                for(int i=1;i<=T;i++)
+                {
+                    String s1=sc.next();
+                    String s2=sc.next();
+                    BigInteger a=new BigInteger(s1);
+                    BigInteger b=new BigInteger(s2);
+                    System.out.println("Case "+i+":");
+                    System.out.println(s1+" / "+s2+" = "+a. divide (b)); 
+                    if(i<T)
+                        System.out.println();
+                }
+
+            }
+        }
