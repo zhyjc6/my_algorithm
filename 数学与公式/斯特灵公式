@@ -1,0 +1,69 @@
+斯特灵公式是一条用来取n阶乘近似值的数学公式。一般来说，当n很大的时候，n阶乘的计算量十分大，所以斯特灵公式十分好用，而且，即使在
+ 
+n很小的时候，斯特灵公式的取值已经十分准确。
+公式为： 
+这就是说，对于足够大的整数n，这两个数互为近似值。更加精确地： 
+或者：  
+
+
+
+斯特灵公式只是给出了阶乘的通项公式，然而我们需要求的是阶乘的位数。想到位数就要想到log10：
+1是1位，log10（10）=0;
+10是2位，log10（10）=1；
+1000是4位，log10（1000）=3；
+容易发现一个数的位数=这个数的以10位底的对数+1
+再大的数对它求对数，其结果将缩减得非常小
+此时我们就有两种方法来解决问题：
+
+一、暴力法：
+
+#include<iostream>
+#include<cmath>
+using namespace std;
+
+#define PI 3.141592653589
+#define e 2.71828182
+int main()
+{
+	int n,t;
+	cin >> t;
+	while (t--)
+	{
+		cin >> n;
+		double sum = 0.0;
+		for (int i = 1; i <= n; i++)
+		{
+			//确保相加的数都是int范围内的浮点型
+			sum += (double)log10(i);
+		}
+		//用ceil出错了
+		//直接强制转换更为保险
+		cout << (int)sum+1<< endl;
+	}
+	system("pause");
+	return 0;
+}
+
+
+二、斯特灵公式法：
+
+#include<iostream>
+#include<cmath>
+using namespace std;
+
+#define PI 3.141592653589
+#define e 2.71828182
+int main()
+{
+	int n,t;
+	cin >> t;
+	while (t--)
+	{
+		cin >> n;
+		double sum ;
+		sum = (double)log10(PI * 2 * n)/2 + (double)n*log10(n / e);
+		cout << (int)sum + 1 << endl;
+	}
+	system("pause");
+	return 0;
+}
