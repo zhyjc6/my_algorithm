@@ -1,0 +1,50 @@
+#include<iostream>
+#include<string>
+using namespace std;
+
+
+void subs(string s1, int num);
+int main()
+{
+	int n;
+	int num;
+	string s;
+	cin >> n;
+	while (n--)
+	{
+		cin >> s;
+		cin >> num;
+		subs(s, num);
+	}
+
+
+	system("pause");
+	return 0;
+}
+
+//大数字符串s1除以Int型整数num的商
+//整型长度最多8位
+void subs(string s1, int num)
+{
+	int sum = 0;//每次上位的被除数
+	int flag = 0;//最开始的0不要打印
+	for(int i=0;i<s1.length();i++)//直到最后一位
+	{
+		sum *= 10;
+		sum += s1[i] - '0';
+
+
+		if (sum < num&&flag==1)//必须先判断
+		{
+			cout << 0 ;
+		}
+		if (sum >= num)//涉及到sum值，必须后判断
+		{
+			flag = 1;
+			cout << sum / num;
+			sum = sum % num;
+		}	
+	}
+	cout << endl;
+	return;
+}
